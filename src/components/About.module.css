@@ -1,0 +1,81 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+
+.card:hover { border-color: var(--border2); }
+
+.wide { grid-column: span 2; }
+
+.cardLabel {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.cardValue {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.sub {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 4px;
+  font-family: var(--mono);
+}
+
+.certGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+}
+
+.certItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text2);
+  padding: 4px 0;
+}
+
+.certDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ncsNote {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  background: #0d2035;
+  border: 1px solid #1f4068;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.ncsNote strong { color: #79c0ff; }
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+  .wide { grid-column: span 1; }
+  .certGrid { grid-template-columns: 1fr; }
+}
