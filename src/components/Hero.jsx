@@ -3,8 +3,8 @@ import { PROFILE } from '../data.js'
 import styles from './Hero.module.css'
 
 const HERO_BADGES = [
-  { label: 'Java 17', cls: 'blue' },
-  { label: 'Spring Boot 3.x', cls: 'blue' },
+  { label: 'Java', cls: 'blue' },
+  { label: 'Spring Boot', cls: 'blue' },
   { label: 'Spring Security', cls: 'blue' },
   { label: 'AWS EC2/RDS/S3', cls: 'green' },
   { label: 'Docker', cls: 'green' },
