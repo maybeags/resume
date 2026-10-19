@@ -36,7 +36,7 @@ export default function About() {
             ))}
           </div>
           <div className={styles.ncsNote}>
-            ★ NCS 정보기술개발 현재 63점 · 교육 현장 경력 반영 시 <strong>70점 예상</strong> (변경신청 진행 중)
+            ★ NCS 정보기술개발 확인강사 · 현재 <strong>75점</strong>
           </div>
         </div>
       </div>
