@@ -3,7 +3,7 @@ export const PROFILE = {
   nameEn: 'Ahn Geunsu',
   handle: 'maybeags',
   title: ['Backend Developer', 'KDT Fullstack Instructor'],
-  desc: 'Java/Spring Boot 백엔드 개발과 AWS 클라우드 배포를 직접 구현하고, KDT 국비지원 과정 주강사로 2개 기수에 걸쳐 풀스택 커리큘럼을 단독 설계·운영합니다.',
+  desc: 'Java/Spring Boot 백엔드 개발과 AWS 클라우드 배포를 직접 구현하고, KDT 국비지원 과정 주강사로 2개 기수에 걸쳐 풀스택 커리큘럼을 단독 설계·운영했습니다. 현재 멋쟁이사자처럼 KDT 클라우드 엔지니어링 과정에서 AWS·DevOps 교육을 맡고 있습니다.',
   github: 'https://github.com/maybeags',
   email: 'justinahngs@naver.com',
   githubPages: 'https://maybeags.github.io',
@@ -29,6 +29,7 @@ export const SKILLS = [
       { label: 'REST API', hot: true },
       { label: 'Swagger / OpenAPI', hot: true },
       { label: 'OAuth2', hot: true },
+      { label: 'Node.js / Express' },
       { label: 'Python' },
     ],
   },
@@ -43,6 +44,9 @@ export const SKILLS = [
       { label: 'GitHub Actions', hot: true },
       { label: 'Nginx', hot: true },
       { label: 'Certbot / HTTPS', hot: true },
+      { label: 'AWS VPC / ALB / Auto Scaling', hot: true },
+      { label: 'Kubernetes', hot: true },
+      { label: 'CodeDeploy / GitLab CI' },
       { label: 'Git / GitHub' },
     ],
   },
@@ -72,15 +76,32 @@ export const SKILLS = [
       { label: 'DBeaver' },
     ],
   },
+  {
+    group: 'AI Dev Tools',
+    color: 'accent',
+    tags: [
+      { label: 'Claude Code', hot: true },
+      { label: 'Gemini Argon', hot: true },
+      { label: 'Gemini API' },
+    ],
+  },
 ]
 
 export const EXPERIENCE = [
   {
-    period: '2024.06 – present',
+    period: '2026.06 – 2026.11',
+    role: 'KDT 보조강사 · 클라우드 엔지니어링 7기',
+    org: '멋쟁이사자처럼',
+    color: 'accent',
+    desc: 'AWS·DevOps 과정 온라인 보조강사. AWS 3-Tier 아키텍처(VPC, ALB, Auto Scaling, RDS, Route53/ACM, WAF), Docker/Kubernetes, CodeDeploy·GitLab CI/CD 강의자료를 최신 버전 기준으로 재구성·제작하고 Java 보충강의 진행.',
+    tags: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', '보충강의'],
+  },
+  {
+    period: '2024.06 – 2026.05',
     role: 'KDT 풀스택 주강사',
     org: '코리아아이티아카데미 부산',
     color: 'accent',
-    desc: 'Java → HTML/CSS → JavaScript → Python → SQL → Spring Boot → React → OAuth2 → AWS 배포에 이르는 전 과정을 단독 설계·운영. 2개 기수(korit_07, korit_12) 담당. 수강생 전원 개별 코드 피드백 및 GitHub 레포 리뷰 운영.',
+    desc: 'Java → HTML/CSS → JavaScript → Python → SQL → Spring Boot → React → OAuth2 → AWS 배포에 이르는 전 과정을 단독 설계·운영. AWS 배포 단원에서 Node.js/Express 프로젝트 배포 실습 진행. 2개 기수(korit_07, korit_12) 담당. 수강생 전원 개별 코드 피드백 및 GitHub 레포 리뷰 운영.',
     tags: ['Spring Boot', 'JWT', 'AWS', 'React', 'KDT 주강사'],
   },
   {
@@ -116,7 +137,19 @@ export const TEACHING = [
     icon: 'AWS',
     name: 'AWS 배포',
     color: '#3fb950',
-    items: ['EC2 / Nginx / HTTPS', 'RDS / S3 / IAM', 'Docker / CI/CD'],
+    items: ['EC2 / Nginx / HTTPS', 'RDS / S3 / IAM', 'Express 서버 배포 실습'],
+  },
+  {
+    icon: '3-Tier',
+    name: 'AWS 3-Tier 아키텍처',
+    color: '#3fb950',
+    items: ['VPC / ALB / Auto Scaling', 'RDS / Route53 / ACM / WAF', 'CodeDeploy / GitLab CI/CD'],
+  },
+  {
+    icon: 'K8s',
+    name: 'Docker / Kubernetes',
+    color: '#3fb950',
+    items: ['이미지 빌드 / 컨테이너 운영', 'Deployment / Service', 'Ingress → Gateway API'],
   },
   {
     icon: 'SQL',
