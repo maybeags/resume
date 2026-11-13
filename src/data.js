@@ -2,8 +2,8 @@ export const PROFILE = {
   name: '안근수',
   nameEn: 'Ahn Geunsu',
   handle: 'maybeags',
-  title: ['Backend Developer', 'KDT Fullstack Instructor'],
-  desc: 'Java/Spring Boot 백엔드 개발과 AWS 클라우드 배포를 직접 구현하고, KDT 국비지원 과정 주강사로 2개 기수에 걸쳐 풀스택 커리큘럼을 단독 설계·운영했습니다. 현재 멋쟁이사자처럼 KDT 클라우드 엔지니어링 과정에서 AWS·DevOps 교육을 맡고 있습니다.',
+  title: ['Backend Developer', 'KDT Fullstack Instructor', 'Cloud/DevOps Instructor'],
+  desc: 'Java/Spring Boot 백엔드 개발과 AWS 클라우드 배포를 직접 구현하고, KDT 국비지원 과정 주강사로 3개 기수(2024.06~2026.05)에 걸쳐 풀스택 커리큘럼을 단독 설계·운영했습니다. 2026.06~11에는 멋쟁이사자처럼 KDT 클라우드 엔지니어링 7기에서 AWS·DevOps 실습을 보조 강의했습니다.',
   github: 'https://github.com/maybeags',
   email: 'justinahngs@naver.com',
   githubPages: 'https://maybeags.github.io',
@@ -13,7 +13,7 @@ export const CERTS = [
   { name: '정보처리기사', date: '2024.06', color: 'green' },
   { name: 'SQL 개발자 (SQLD)', date: '2024.06', color: 'green' },
   { name: 'NCS 정보기술개발 확인강사', date: '2024.10', color: 'purple' },
-  { name: '데이터분석 준전문가 (ADsP)', date: '2026.03', color: 'purple' },
+  { name: '데이터분석 준전문가 (ADsP)', date: '2026.02', color: 'purple' },
 ]
 
 export const SKILLS = [
@@ -101,7 +101,7 @@ export const EXPERIENCE = [
     role: 'KDT 풀스택 주강사',
     org: '코리아아이티아카데미 부산',
     color: 'accent',
-    desc: 'Java → HTML/CSS → JavaScript → Python → SQL → Spring Boot → React → OAuth2 → AWS 배포에 이르는 전 과정을 단독 설계·운영. AWS 배포 단원에서 Node.js/Express 프로젝트 배포 실습 진행. 2개 기수(korit_07, korit_12) 담당. 수강생 전원 개별 코드 피드백 및 GitHub 레포 리뷰 운영.',
+    desc: 'Java → HTML/CSS → JavaScript → Python → SQL → Spring Boot → React → OAuth2 → AWS 배포에 이르는 전 과정을 단독 설계·운영. AWS 배포 단원에서 Node.js/Express 프로젝트 배포 실습 진행. 3개 기수(korit_3·07·12) 담당. 수강생 전원 개별 코드 피드백 및 GitHub 레포 리뷰 운영.',
     tags: ['Spring Boot', 'JWT', 'AWS', 'React', 'KDT 주강사'],
   },
   {
@@ -166,6 +166,19 @@ export const TEACHING = [
 ]
 
 export const PROJECTS = [
+  {
+    name: '멋쟁이사자처럼 7기 클라우드 교안',
+    desc: '클라우드 엔지니어링 7기 수업자료(M00~M12)를 공개 저장소로 정리. 웹 동작원리·HTTP부터 AWS 입문과 S3 배포, Linux·EC2, Docker/Kubernetes, ArgoCD·Helm·EKS, GitLab CI, 캡스톤 최종배포까지 단계별 실습 문서로 구성.',
+    links: [
+      { label: 'Repository', url: 'https://github.com/maybeags/likelions_cloud_engineering' },
+    ],
+    tags: [
+      { label: 'AWS', color: 'green' },
+      { label: 'Kubernetes', color: 'green' },
+      { label: 'ArgoCD', color: 'green' },
+      { label: 'CI/CD', color: 'green' },
+    ],
+  },
   {
     name: 'Car Database — 풀스택 프로젝트',
     desc: 'Spring Boot 3.x + React(TypeScript) + MariaDB + AWS 풀스택. Car-Owner 1:N JPA 설계, Spring Security + JWT 인증, CORS, Swagger. React MUI + AG-Grid + react-query CRUD 완전 연동. AWS EC2 + Nginx + Certbot HTTPS + RDS + S3 이미지 업로드 전 과정 구현.',
