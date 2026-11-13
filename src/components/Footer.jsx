@@ -23,6 +23,9 @@ export default function Footer() {
           <a href={`mailto:${PROFILE.email}`} className={styles.link}>
             Email
           </a>
+          <a href="https://maybeags.github.io/resume-motion/" target="_blank" rel="noreferrer" className={styles.link}>
+            모션 이력서 →
+          </a>
         </div>
       </div>
     </footer>
