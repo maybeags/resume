@@ -1,16 +1,451 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="안근수 포트폴리오 — Java/Spring Boot 백엔드 개발자, KDT 풀스택 주강사" />
-    <title>안근수 | Fullstack Developer & KDT Instructor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="안근수 · KDT 풀스택/클라우드 강사 이력서">
+<title>안근수 — KDT Instructor · Backend & Cloud</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --bg:#04060c; --fg:#eaf0ff; --muted:#8b98b4;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --a1:#6f9bff; --a2:#3ce6b0; --a3:#c08bff;
+  --r:18px;
+  --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);
+  line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(111,155,255,.35)}
+a{color:inherit}
+
+/* 배경 */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;will-change:transform}
+.b1{width:52vw;height:52vw;left:-10vw;top:-14vw;background:radial-gradient(circle,rgba(111,155,255,.55),transparent 62%);animation:float1 22s ease-in-out infinite alternate}
+.b2{width:44vw;height:44vw;right:-12vw;top:6vw;background:radial-gradient(circle,rgba(60,230,176,.35),transparent 62%);animation:float2 26s ease-in-out infinite alternate}
+.b3{width:56vw;height:56vw;left:18vw;bottom:-26vw;background:radial-gradient(circle,rgba(192,139,255,.32),transparent 62%);animation:float3 30s ease-in-out infinite alternate}
+@keyframes float1{to{transform:translate3d(6%,8%,0) scale(1.12)}}
+@keyframes float2{to{transform:translate3d(-7%,10%,0) scale(1.08)}}
+@keyframes float3{to{transform:translate3d(4%,-8%,0) scale(1.1)}}
+.grid-lines{position:absolute;inset:0;opacity:.35;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(70% 60% at 50% 30%,#000 30%,transparent 78%);
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 30%,#000 30%,transparent 78%)}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>")}
+canvas#net{position:fixed;inset:0;z-index:0;opacity:.5}
+
+/* 공통 */
+.wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 24px}
+#bar{position:fixed;top:0;left:0;height:2px;width:0;z-index:60;
+  background:linear-gradient(90deg,var(--a1),var(--a2),var(--a3));box-shadow:0 0 18px rgba(111,155,255,.7)}
+.dotnav{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:14px}
+.dotnav a{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);position:relative;transition:.3s}
+.dotnav a:after{content:attr(data-label);position:absolute;right:18px;top:50%;transform:translateY(-50%) translateX(4px);
+  font-size:11px;color:var(--muted);white-space:nowrap;opacity:0;transition:.25s;font-family:var(--mono)}
+.dotnav a:hover:after,.dotnav a.on:after{opacity:1;transform:translateY(-50%)}
+.dotnav a.on{background:var(--a2);box-shadow:0 0 12px rgba(60,230,176,.8)}
+
+.reveal{opacity:0;transform:translateY(28px);filter:blur(8px);
+  transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1),filter 1s}
+.reveal.in{opacity:1;transform:none;filter:none}
+.shead{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.snum{font-family:var(--mono);font-size:12px;color:var(--a2);letter-spacing:.22em}
+.shead h2{font-size:clamp(23px,3.6vw,33px);margin:0;letter-spacing:-.02em;font-weight:750}
+.shead .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+section{padding:104px 0 26px;position:relative}
+
+/* 히어로 */
+header{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;padding-top:40px}
+.term{font-family:var(--mono);font-size:13px;color:var(--a2);margin-bottom:20px;display:flex;align-items:center;gap:8px;opacity:.9}
+.term .cursor{width:8px;height:16px;background:var(--a2);display:inline-block;animation:blink 1.05s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+h1{font-size:clamp(46px,10.5vw,112px);line-height:.9;margin:0;letter-spacing:-.045em;font-weight:800}
+h1 .ch{display:inline-block;opacity:0;transform:translateY(60px) rotateX(50deg);transform-origin:50% 100%;
+  animation:rise 1.05s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+h1 .grad{display:inline-block;background:linear-gradient(100deg,#fff 20%,var(--a1) 45%,var(--a2) 62%,#fff 88%);
+  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:sheen 7s linear infinite}
+@keyframes sheen{to{background-position:-220% 0}}
+.tagline{margin-top:20px;font-size:clamp(15px,2.2vw,19px);color:#c2cee4;max-width:640px}
+.tagline b{color:#fff;font-weight:650}
+.typing{margin-top:12px;font-family:var(--mono);font-size:13.5px;color:var(--a1);min-height:22px}
+.typing .bar2{display:inline-block;width:1px;height:14px;background:var(--a1);margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+.herocta{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px}
+.btn{border:1px solid var(--line2);background:rgba(255,255,255,.03);color:var(--fg);border-radius:999px;
+  padding:12px 20px;font-size:14px;text-decoration:none;transition:.28s;backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:var(--font)}
+.btn:hover{border-color:var(--a1);transform:translateY(-2px);box-shadow:0 12px 34px rgba(111,155,255,.25);color:#fff}
+.btn.primary{background:linear-gradient(135deg,var(--a1),#8fb3ff);border-color:transparent;color:#06101f;font-weight:750}
+.btn.primary:hover{box-shadow:0 14px 40px rgba(111,155,255,.45)}
+.metaline{display:flex;gap:18px;flex-wrap:wrap;margin-top:46px;font-size:12.5px;color:var(--muted);font-family:var(--mono)}
+.metaline span{display:flex;align-items:center;gap:6px}
+.metaline i{width:5px;height:5px;border-radius:50%;background:var(--a2);display:inline-block}
+.scrolldown{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:var(--muted);font-size:10px;letter-spacing:.36em;font-family:var(--mono)}
+.scrolldown:after{content:"";display:block;width:1px;height:36px;margin:10px auto 0;
+  background:linear-gradient(var(--muted),transparent);animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:.15;transform:scaleY(.35)}50%{opacity:1;transform:scaleY(1)}}
+
+/* 스탯 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.stat{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:20px 18px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012))}
+.stat:before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--a1),transparent);opacity:.7}
+.stat .n{font-size:clamp(24px,3.2vw,32px);font-weight:800;letter-spacing:-.03em;
+  background:linear-gradient(120deg,#fff,#9fb6ff);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.stat .l{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* 마퀴 */
+.marquee{position:relative;margin:44px 0 8px;padding:16px 0;overflow:hidden;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:30px;width:max-content;animation:slide 32s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.chip{font-family:var(--mono);font-size:13px;color:#a8b6ce;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.chip b{color:var(--a2);font-size:9px}
+
+/* 타임라인 */
+.tl{position:relative;margin-top:6px;padding-left:30px}
+.tl:before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;border-radius:2px;
+  background:linear-gradient(180deg,var(--a1),var(--a2),rgba(192,139,255,.5),transparent);
+  transform:scaleY(0);transform-origin:top;transition:transform 1.6s cubic-bezier(.16,1,.3,1)}
+.tl.in:before{transform:scaleY(1)}
+.job{position:relative;margin-bottom:22px;padding:20px 22px;border:1px solid var(--line);border-radius:var(--r);
+  background:linear-gradient(180deg,rgba(255,255,255,.042),rgba(255,255,255,.01));transition:.32s}
+.job:before{content:"";position:absolute;left:-27px;top:28px;width:13px;height:13px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--a1);box-shadow:0 0 0 5px rgba(111,155,255,.12);transition:.3s}
+.job:hover{transform:translateX(5px);border-color:rgba(111,155,255,.5);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.job:hover:before{background:var(--a1);box-shadow:0 0 0 7px rgba(111,155,255,.18)}
+.job .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.job .p{font-family:var(--mono);font-size:12px;color:var(--a2);letter-spacing:.04em}
+.job h3{margin:8px 0 2px;font-size:18px;letter-spacing:-.01em}
+.job .org{font-size:13px;color:var(--muted)}
+.job p.d{margin:12px 0 0;font-size:14px;color:#c4d0e4;line-height:1.75}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.tag{font-size:11px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);transition:.25s}
+.job:hover .tag{border-color:rgba(60,230,176,.35);color:#cfe9e0}
+
+/* 티칭 */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.tcard{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:18px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transition:.3s}
+.tcard:before{content:"";position:absolute;inset:0;opacity:0;transition:.3s;
+  background:radial-gradient(220px 220px at var(--mx,50%) var(--my,50%),rgba(60,230,176,.16),transparent 70%)}
+.tcard:hover{transform:translateY(-4px);border-color:rgba(60,230,176,.42)}
+.tcard:hover:before{opacity:1}
+.tcard .k{font-family:var(--mono);font-size:11px;color:var(--a2);letter-spacing:.14em}
+.tcard h3{margin:6px 0 10px;font-size:15.5px}
+.tcard ul{margin:0;padding-left:0;list-style:none}
+.tcard li{font-size:12.8px;color:#b9c6da;padding:3px 0 3px 14px;position:relative}
+.tcard li:before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:1px;background:var(--a1);opacity:.75}
+
+/* 프로젝트 */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.pcard{position:relative;border:1px solid var(--line);border-radius:var(--r);padding:22px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transition:.35s}
+.pcard:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--a1),var(--a2),var(--a3));opacity:.55;transition:.35s}
+.pcard:hover{transform:translateY(-5px);border-color:rgba(111,155,255,.45)}
+.pcard:hover:before{opacity:1;height:3px}
+.pcard .idx{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.pcard h3{margin:8px 0 10px;font-size:17px;letter-spacing:-.01em}
+.pcard p{margin:0;font-size:13.6px;color:#bfccdf;line-height:1.75}
+.pcard .links{display:flex;gap:14px;margin-top:16px;flex-wrap:wrap}
+.pcard .links a{font-size:12.5px;color:var(--a1);text-decoration:none;border-bottom:1px solid rgba(111,155,255,.3);padding-bottom:1px;transition:.25s}
+.pcard .links a:hover{color:#fff;border-color:#fff}
+
+/* 자격 */
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.cert{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);
+  border-radius:14px;padding:14px 16px;font-size:13.5px;background:rgba(255,255,255,.028);transition:.28s}
+.cert:hover{border-color:rgba(192,139,255,.45);transform:translateY(-2px)}
+.cert span{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* 푸터 */
+footer{padding:110px 0 70px;text-align:center}
+.fcta{font-size:clamp(22px,4vw,34px);font-weight:780;letter-spacing:-.025em;margin:0 0 10px}
+.fsub{color:var(--muted);font-size:14px;margin-bottom:26px}
+.frow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.fmeta{margin-top:44px;font-size:12px;color:#5f6c85;font-family:var(--mono)}
+
+@media (max-width:820px){
+  .dotnav{display:none}
+  section{padding:78px 0 20px}
+  .job{padding:18px}
+  .metaline{gap:12px;font-size:11.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none;filter:none}
+  h1 .ch{opacity:1;transform:none}
+  .tl:before{transform:scaleY(1)}
+}
+@media print{
+  .bg,.grain,#net,.dotnav,#bar,.scrolldown,.herocta,.frow{display:none!important}
+  body{background:#fff;color:#111}
+  section{padding:20px 0;break-inside:avoid}
+  .reveal{opacity:1;transform:none;filter:none}
+  .job,.tcard,.pcard,.stat,.cert{border-color:#ddd;background:#fff}
+  .stat .n,.shead h2,h1{color:#111;-webkit-text-fill-color:#111}
+  .typing,.term,.p{color:#444}
+}
+</style>
+</head>
+<body>
+<div class="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid-lines"></div></div>
+<canvas id="net"></canvas>
+<div class="grain"></div>
+<div id="bar"></div>
+
+<nav class="dotnav" id="dotnav">
+  <a href="#about" data-label="about"></a>
+  <a href="#exp" data-label="experience"></a>
+  <a href="#teach" data-label="teaching"></a>
+  <a href="#work" data-label="projects"></a>
+  <a href="#certs" data-label="certs"></a>
+</nav>
+
+<div class="wrap">
+  <header>
+    <div class="term">maybeags ~ $ <span id="cmd"></span><span class="cursor"></span></div>
+    <h1 id="name"></h1>
+    <div class="tagline"><b>Java · Spring Boot · AWS</b> 를 직접 만들고, <b>KDT 국비과정</b>에서 가르쳐 왔습니다.<br>
+      풀스택 커리큘럼 <b>3개 기수</b> 단독 설계·운영, 클라우드 엔지니어링 과정 보조강의까지.</div>
+    <div class="typing" id="typing"></div>
+    <div class="herocta">
+      <a class="btn primary" href="#exp">경력 보기 →</a>
+      <a class="btn" href="https://github.com/maybeags" target="_blank" rel="noopener">GitHub</a>
+      <button class="btn" id="printBtn">이력서 PDF로 저장</button>
+    </div>
+    <div class="metaline">
+      <span><i></i>부산 연제구</span>
+      <span><i></i>KDT 주강사 3개 기수 (2024.06 – 2026.05)</span>
+      <span><i></i>멋쟁이사자처럼 클라우드 7기 보조강사 (2026.06 – 11)</span>
+    </div>
+    <div class="scrolldown">SCROLL</div>
+  </header>
+
+  <section id="about">
+    <div class="shead reveal"><span class="snum">01</span><h2>숫자로 보는 최근 3년</h2><span class="rule"></span></div>
+    <div class="stats reveal">
+      <div class="stat"><div class="n" data-count="3" data-suffix="개 기수">0</div><div class="l">KDT 풀스택 단독 설계·운영 (korit 3·7·12)</div></div>
+      <div class="stat"><div class="n" data-count="29" data-suffix="개">0</div><div class="l">공개 강의 저장소 · 과목별 실습 코드</div></div>
+      <div class="stat"><div class="n" data-count="2" data-suffix="년 6개월">0</div><div class="l">IT 교육 경력 (2024.06 – 2026.11)</div></div>
+      <div class="stat"><div class="n" data-count="106" data-suffix="개">0</div><div class="l">GitHub 공개 저장소</div></div>
+    </div>
+  </section>
+
+  <div class="marquee reveal"><div class="track" id="track"></div></div>
+
+  <section id="exp">
+    <div class="shead reveal"><span class="snum">02</span><h2>가르친 곳</h2><span class="rule"></span></div>
+    <div class="tl" id="tl"></div>
+  </section>
+
+  <section id="teach">
+    <div class="shead reveal"><span class="snum">03</span><h2>가르친 것</h2><span class="rule"></span></div>
+    <div class="tgrid" id="teachgrid"></div>
+  </section>
+
+  <section id="work">
+    <div class="shead reveal"><span class="snum">04</span><h2>만든 것</h2><span class="rule"></span></div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+
+  <section id="certs">
+    <div class="shead reveal"><span class="snum">05</span><h2>자격</h2><span class="rule"></span></div>
+    <div class="certs reveal" id="certs"></div>
+  </section>
+
+  <footer class="reveal">
+    <h2 class="fcta">기초부터 배포까지, 직접 만들고 직접 가르칩니다.</h2>
+    <p class="fsub">부산대학교 영어교육과 · 2011.03 – 2016.02</p>
+    <div class="frow">
+      <a class="btn primary" href="mailto:justinahngs@naver.com">메일 보내기</a>
+      <a class="btn" href="https://github.com/maybeags" target="_blank" rel="noopener">github.com/maybeags</a>
+      <button class="btn" id="copyBtn">이메일 복사</button>
+    </div>
+    <div class="fmeta">© 2026 안근수 (Ahn Geunsu) · 부산</div>
+  </footer>
+</div>
+
+<script>
+const NAME='안근수';
+const CMDS=['cat profile.md','ls career/','git log --oneline -3'];
+const TYPING=['Java · Spring Boot 3 · JPA · Security/JWT',
+               'AWS 3-Tier · VPC · ALB · Auto Scaling · WAF',
+               'Docker · Kubernetes · ArgoCD · GitLab CI/CD',
+               'React · TypeScript · Vite · react-query'];
+const CHIPS=['Java','Spring Boot 3.x','Spring Security','JWT','JPA/Hibernate','REST API','Swagger','OAuth2',
+  'React','TypeScript','Vite','react-query','MUI','AG-Grid','JavaScript ES6+','HTML5/CSS3',
+  'AWS EC2','AWS RDS','AWS S3','VPC/ALB/ASG','Route53/ACM/WAF','Docker','Kubernetes','ArgoCD','Helm','EKS',
+  'GitLab CI','GitHub Actions','CodeDeploy','Nginx','Certbot HTTPS','MariaDB','MySQL','Python','Claude Code','Gemini API'];
+const JOBS=[
+ {p:'2026.06 – 2026.11', r:'KDT 보조강사 · 클라우드 엔지니어링 7기', o:'멋쟁이사자처럼',
+  d:'AWS·DevOps 과정 온라인 보조강사. AWS 3-Tier(VPC·ALB·Auto Scaling·RDS·Route53/ACM·WAF), Docker/Kubernetes, ArgoCD·Helm, GitLab CI/CD 실습을 지원하고 Java 보충강의를 진행했습니다. 7기 수업자료 M00~M12를 공개 저장소로 정리.',
+  t:['AWS 3-Tier','Kubernetes','ArgoCD','GitLab CI','보충강의']},
+ {p:'2024.06 – 2026.05', r:'KDT 풀스택 주강사', o:'코리아아이티아카데미 부산',
+  d:'Java → HTML/CSS → JavaScript → Python → SQL → Spring Boot → React → OAuth2 → AWS 배포 전 과정을 단독 설계·운영. 3개 기수(korit 3·7·12) 담당, 수강생 전원 개별 코드 피드백과 GitHub 레포 리뷰 운영, 기초→응용→프로젝트 연계 교안·한국어 실습 가이드 직접 제작.',
+  t:['3개 기수','커리큘럼 설계','코드 리뷰','포트폴리오 지도']},
+ {p:'2016.03 – 2023.02', r:'영어교사 (약 7년)', o:'중등학교',
+  d:'영어과 정규 교육과정 설계·운영, 교무기획부 업무 병행. 수준별 학습자 대상 맞춤형 교수 설계 역량을 쌓았습니다.',
+  t:['교육과정 설계','교수 설계','학습자 분석']}
+];
+const TEACH=[
+ {k:'BACKEND', h:'Java', items:['OOP · 상속 · 인터페이스','Lambda · Stream API','예외처리 · 컬렉션']},
+ {k:'BACKEND', h:'Spring Boot 3', items:['DI/IoC · JPA · ORM','Spring Security + JWT','REST API · Swagger']},
+ {k:'FRONTEND', h:'React + TypeScript', items:['Hooks · Context API','react-query · MUI','CRUD 풀스택 연동']},
+ {k:'CLOUD', h:'AWS 배포', items:['EC2 · Nginx · HTTPS','RDS · S3 · IAM','Express 서버 배포 실습']},
+ {k:'CLOUD', h:'AWS 3-Tier', items:['VPC · ALB · Auto Scaling','RDS · Route53 · ACM · WAF','CodeDeploy · GitLab CI/CD']},
+ {k:'INFRA', h:'Docker · Kubernetes', items:['이미지 빌드 · 컨테이너 운영','Deployment · Service','Ingress → Gateway API']},
+ {k:'DATA', h:'SQL · MariaDB', items:['JOIN · SUBQUERY','DDL · 집계함수','JPA 연동 실습']},
+ {k:'LANG', h:'Python', items:['OOP · 클래스 · 상속','커피머신 프로젝트','Hangman 게임']}
+];
+const PROJECTS=[
+ {h:'멋쟁이사자처럼 7기 클라우드 교안', d:'KDT 클라우드 엔지니어링 7기 수업자료 M00~M12를 공개 저장소로 정리. 웹 동작원리·HTTP부터 AWS 입문과 S3 배포, Linux·EC2, Docker/Kubernetes, ArgoCD·Helm·EKS, GitLab CI, 캡스톤 최종배포까지 단계별 실습 문서.',
+  l:[['Repository','https://github.com/maybeags/likelions_cloud_engineering']], t:['AWS','K8s','ArgoCD','CI/CD']},
+ {h:'Car Database 풀스택', d:'Spring Boot 3 + React(TypeScript) + MariaDB + AWS. Car-Owner 1:N JPA 설계, Spring Security + JWT 인증, MUI·AG-Grid·react-query CRUD, EC2·Nginx·Certbot·RDS·S3 배포까지 전 과정 구현.',
+  l:[['Backend','https://github.com/maybeags/korit_12_springboot'],['Frontend','https://github.com/maybeags/korit_12_react']], t:['Spring Boot','JPA','React','AWS']},
+ {h:'Google OAuth2 풀스택', d:'Spring Boot OAuth2 Client + JWT 통합 인증. Google 인증 콜백 처리, 쿼리스트링 토큰 전달, React PrivateRoute/GuestRoute 라우팅 보호, MUI 소셜 로그인 UI.',
+  l:[['GitHub','https://github.com/maybeags/korit_12_oauth2']], t:['OAuth2','JWT','React']},
+ {h:'Gemini AI 챗봇', d:'순수 JavaScript + Fetch API로 Gemini API 연동. 프레임워크 없이 비동기 처리와 DOM 조작으로 실시간 대화 UI 구현, JS 강의 교재로 사용.',
+  l:[['GitHub','https://github.com/maybeags/korit_12_javascript']], t:['JavaScript','Fetch API','Gemini']}
+];
+const CERTS=[['정보처리기사','2024.06'],['SQL 개발자 (SQLD)','2024.06'],['NCS 정보기술개발 확인강사','2024.10 · 75점'],['데이터분석 준전문가 (ADsP)','2026.02']];
+
+(function(){
+  const cmd=document.getElementById('cmd'); let ci=0, idx=0;
+  const text=CMDS[idx];
+  (function t(){
+    if(ci<=text.length){ cmd.textContent=text.slice(0,ci++); setTimeout(t,65); }
+    else setTimeout(()=>{ cmd.textContent=''; ci=0; idx=(idx+1)%CMDS.length; t(); },2400);
+  })();
+  const nm=document.getElementById('name');
+  NAME.split('').forEach((ch,i)=>{
+    const s=document.createElement('span'); s.className='ch';
+    const inner=document.createElement('span'); if(i===0) inner.className='grad';
+    inner.textContent=ch; s.appendChild(inner);
+    s.style.animationDelay=(0.2+i*0.09)+'s'; nm.appendChild(s);
+  });
+  const el=document.getElementById('typing'); let k=0,i2=0,dir=1;
+  (function loop(){
+    const w=TYPING[i2]; el.innerHTML=w.slice(0,k)+'<span class="bar2"></span>';
+    if(dir>0&&k<w.length){k++;setTimeout(loop,42);}
+    else if(dir>0){dir=-1;setTimeout(loop,1600);}
+    else if(k>0){k--;setTimeout(loop,18);}
+    else{dir=1;i2=(i2+1)%TYPING.length;setTimeout(loop,280);}
+  })();
+})();
+
+const track=document.getElementById('track');
+const chips=CHIPS.map(c=>`<span class="chip"><b>◆</b>${c}</span>`).join('');
+track.innerHTML=chips+chips;
+
+document.getElementById('tl').innerHTML=JOBS.map(j=>`
+  <article class="job reveal">
+    <div class="top"><span class="p">${j.p}</span></div>
+    <h3>${j.r}</h3><div class="org">${j.o}</div>
+    <p class="d">${j.d}</p>
+    <div class="tags">${j.t.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+  </article>`).join('');
+
+document.getElementById('teachgrid').innerHTML=TEACH.map(t=>`
+  <article class="tcard reveal">
+    <div class="k">${t.k}</div><h3>${t.h}</h3>
+    <ul>${t.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+  </article>`).join('');
+
+document.getElementById('pgrid').innerHTML=PROJECTS.map((p,i)=>`
+  <article class="pcard reveal">
+    <div class="idx">0${i+1}</div><h3>${p.h}</h3><p>${p.d}</p>
+    <div class="tags">${p.t.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    <div class="links">${p.l.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t} ↗</a>`).join('')}</div>
+  </article>`).join('');
+
+document.getElementById('certs').innerHTML=CERTS.map(([n,d])=>`<div class="cert">${n}<span>${d}</span></div>`).join('');
+
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      if(e.target.matches('.stats')) e.target.querySelectorAll('[data-count]').forEach(countUp);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal, .tl').forEach(el=>io.observe(el));
+function countUp(el){
+  const target=+el.dataset.count, suffix=el.dataset.suffix||''; const dur=1300, t0=performance.now();
+  (function step(t){
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*e).toLocaleString('ko-KR')+suffix;
+    if(p<1) requestAnimationFrame(step);
+  })(t0);
+}
+
+const bar=document.getElementById('bar');
+const dots=[...document.querySelectorAll('.dotnav a')];
+const secs=['about','exp','teach','work','certs'].map(id=>document.getElementById(id));
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  const y=h.scrollTop+innerHeight*0.4; let cur=-1;
+  secs.forEach((s,i)=>{ if(s&&s.offsetTop<=y) cur=i; });
+  dots.forEach((d,i)=>d.classList.toggle('on',i===cur));
+},{passive:true});
+
+document.addEventListener('pointermove',e=>{
+  document.querySelectorAll('.tcard').forEach(c=>{
+    const r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    c.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+});
+
+document.getElementById('printBtn').addEventListener('click',e=>{e.preventDefault();window.print();});
+document.getElementById('copyBtn').addEventListener('click',async e=>{
+  try{ await navigator.clipboard.writeText('justinahngs@naver.com'); e.currentTarget.textContent='복사됨 ✓';
+       setTimeout(()=>e.currentTarget.textContent='이메일 복사',1500);}catch(_){}
+});
+
+(function(){
+  const cv=document.getElementById('net'), ctx=cv.getContext('2d');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w,h,pts=[]; const dpr=Math.min(devicePixelRatio||1,2);
+  function resize(){
+    w=cv.width=innerWidth*dpr; h=cv.height=innerHeight*dpr;
+    cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px';
+    const n=Math.min(80,Math.round(innerWidth/18));
+    pts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.22*dpr,vy:(Math.random()-.5)*.22*dpr}));
+  }
+  addEventListener('resize',resize); resize();
+  if(reduce) return;
+  const LIM=(150*dpr)**2;
+  (function frame(){
+    ctx.clearRect(0,0,w,h);
+    for(const p of pts){
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>w)p.vx*=-1; if(p.y<0||p.y>h)p.vy*=-1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,1.2*dpr,0,7); ctx.fillStyle='rgba(130,165,255,.5)'; ctx.fill();
+    }
+    for(let a=0;a<pts.length;a++)for(let b=a+1;b<pts.length;b++){
+      const dx=pts[a].x-pts[b].x, dy=pts[a].y-pts[b].y, d2=dx*dx+dy*dy;
+      if(d2<LIM){
+        ctx.beginPath(); ctx.moveTo(pts[a].x,pts[a].y); ctx.lineTo(pts[b].x,pts[b].y);
+        ctx.strokeStyle='rgba(111,155,255,'+(0.15*(1-d2/LIM)).toFixed(3)+')'; ctx.lineWidth=dpr*.7; ctx.stroke();
+      }
+    }
+    requestAnimationFrame(frame);
+  })();
+})();
+</script>
+</body>
 </html>
