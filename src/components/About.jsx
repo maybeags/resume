@@ -18,10 +18,10 @@ export default function About() {
         </div>
 
         <div className={styles.card}>
-          <div className={styles.cardLabel}>Current Role</div>
+          <div className={styles.cardLabel}>Last Role</div>
           <div className={styles.cardValue}>
             코리아아이티아카데미 부산
-            <div className={styles.sub}>KDT 풀스택 주강사 · 2024.06 – present</div>
+            <div className={styles.sub}>2024.06 – 2026.05</div>
           </div>
         </div>
 
@@ -36,7 +36,7 @@ export default function About() {
             ))}
           </div>
           <div className={styles.ncsNote}>
-            ★ NCS 정보기술개발 확인강사 · 현재 <strong>75점</strong>
+            ★ NCS 정보기술개발 확인강사 · <strong>75점</strong>
           </div>
         </div>
       </div>
